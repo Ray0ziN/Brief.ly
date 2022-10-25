@@ -16,15 +16,38 @@ let urlObj = {
 // let word = bgPage.word;
 // console.log(word)
 
-chrome.runtime.sendMessage({ method: "getWord" }, function (response) {
-  //here response will be the word you want
-  console.log(response);
-});
+// chrome.runtime.sendMessage({ method: "getWord" }, function (response) {
+//   //here response will be the word you want
+//   console.log(response);
+// });
+
+function onGot(page) {
+  page.foo();
+}
+
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
+let getting = chrome.runtime.getBackgroundPage();
+getting.then(onGot, onError);
 
 const change = "audio";
 audioController.setAttribute("src", `http://localhost:3000/${change}`);
 
 button.addEventListener("click", async () => {
+  chrome.tabs.query(
+    {
+      active: true,
+      currentWindow: true,
+    },
+    function (tabs) {
+      var tab = tabs[0];
+      var url = tab.url;
+      console.log(url);
+    }
+  );
+
   postData(URL, { urlObj }).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });

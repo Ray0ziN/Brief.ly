@@ -1,24 +1,26 @@
 console.log("background js");
-// import { getAudio } from "./audio";
-
 chrome.runtime.onMessage.addListener(receiver);
 
 // window.word = "someWord"
-let urlObj = {}
+let url = ""
 
 function receiver(request, sender, sendResponse) {
-  console.log(request.url);
-  urlObj = request
+  // console.log(request.url);
+  url = request.url
 }
 
+// function foo() {
+//   console.log("I'm defined in background.js");
+// }
 
-
-
-
-
-
-
-
+chrome.tabs.query({
+  active: true,
+  currentWindow: true
+}, function(tabs) {
+  var tab = tabs[0];
+  var url = tab.url;
+  console.log(tab,url)
+});
 
 
 
