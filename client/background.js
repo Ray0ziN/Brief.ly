@@ -1,15 +1,46 @@
 console.log("background js");
 // import { getAudio } from "./audio";
 
+chrome.runtime.onMessage.addListener(receiver);
+
+// window.word = "someWord"
+let urlObj = {}
+
+function receiver(request, sender, sendResponse) {
+  console.log(request.url);
+  urlObj = request
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Called when the user clicks on the action.
-chrome.action.onClicked.addListener(function (tab) {
-  // No tabs or host permissions needed!
-  console.log("Turning " + tab.url + " red!");
-  chrome.scripting.executeScript({
-    code: 'document.body.style.backgroundColor="red"',
-  });
-});
-var urlObj = {};
+// chrome.action.onClicked.addListener(function (tab) {
+//   // No tabs or host permissions needed!
+//   console.log("Turning " + tab.url + " red!");
+//   chrome.scripting.executeScript({
+//     code: 'document.body.style.backgroundColor="red"',
+//   });
+// });
+// var urlObj = {};
 // urlObj.url = tab.url;
 // urlObj.title = tab.title
 
@@ -18,28 +49,28 @@ var urlObj = {};
 // });
 
 
-async function getCurrentTab() {
-  let queryOptions = { active: true, lastFocusedWindow: true };
-  // `tab` will either be a `tabs.Tab` instance or `undefined`.
-  let [tab] = await chrome.tabs.query(queryOptions);
-  return tab;
-}
+// async function getCurrentTab() {
+//   let queryOptions = { active: true, lastFocusedWindow: true };
+//   // `tab` will either be a `tabs.Tab` instance or `undefined`.
+//   let [tab] = await chrome.tabs.query(queryOptions);
+//   return tab;
+// }
 
 
 
-async function printtab() {
-  const tabInfo = await getCurrentTab();
-  console.log(tabInfo);
-}
-printtab();
+// async function printtab() {
+//   const tabInfo = await getCurrentTab();
+//   console.log(tabInfo);
+// }
+// printtab();
 
-async function postData(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
-  return response; // parses JSON response into native JavaScript objects
-}
+// async function postData(url = "", data = {}) {
+//   const response = await fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data), // body data type must match "Content-Type" header
+//   });
+//   return response; // parses JSON response into native JavaScript objects
+// }

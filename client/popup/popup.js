@@ -3,22 +3,29 @@ console.log("popupjs");
 // let url = window.document.URL;
 // console.log(url)
 const button = document.getElementById("sendlink");
-const audioController = document.getElementById("my-audio")
-
+const audioController = document.getElementById("my-audio");
 
 const URL = "http://localhost:3000/";
 
 let urlObj = {
-    url : "https://en.wikipedia.org/wiki/Nagothana",
-    title: "Nagothane-next-title" 
+  url: "https://en.wikipedia.org/wiki/Nagothana",
+  title: "Nagothane-next-title",
 };
 
+// let bgPage = chrome.extension.getBackgroundPage();
+// let word = bgPage.word;
+// console.log(word)
 
-const change = 'audio';
-audioController.setAttribute('src', `http://localhost:3000/${change}`);
+chrome.runtime.sendMessage({ method: "getWord" }, function (response) {
+  //here response will be the word you want
+  console.log(response);
+});
+
+const change = "audio";
+audioController.setAttribute("src", `http://localhost:3000/${change}`);
 
 button.addEventListener("click", async () => {
-  postData(URL, {urlObj }).then((data) => {
+  postData(URL, { urlObj }).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
 });
