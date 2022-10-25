@@ -1,18 +1,19 @@
 import sys
 import json
-
-
+import os
 from gtts import gTTS
 
-# This module is imported so that we can
-# play the converted audio
-import os
-
-# The text that you want to convert to audio
 data = str(sys.argv[1])
 urlObj = json.loads(data)
 
-# print(urlObj)
+
+# This module is imported so that we can
+# play the converted audio
+
+# The text that you want to convert to audio
+
+print(urlObj["url"]) # This will get you the url obj
+print(urlObj["title"])
 
 mytext = 'Hello man, I am Raunak and this is ' + urlObj["title"]
 
@@ -27,7 +28,4 @@ myobj = gTTS(text=mytext, lang=language, slow=False)
 
 # Saving the converted audio in a mp3 file named
 # welcome
-myobj.save("welcome.mp3")
-
-# Playing the converted file
-# os.system("welcome.mp3")
+myobj.save("audio/okay.mp3")
