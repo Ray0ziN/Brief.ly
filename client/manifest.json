@@ -1,0 +1,26 @@
+{
+  "name": "brief.ly",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "scripts/content.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": "./assest/HI.png",
+    "default_popup": "popup/popup.html"
+  }
+}
