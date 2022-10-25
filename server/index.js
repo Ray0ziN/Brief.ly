@@ -24,7 +24,7 @@ app.post("/", (req, res) => {
       console.error(`stdout:${data}`);
     });
 
-    res.json({ msg: "his" }); // return a uniqe id with nanoid
+    res.json({urlObj }); // return a uniqe id with nanoid
     // res.sendFile(__dirname + '/welcome.mp3')
   } catch (error) {
     console.log(error);

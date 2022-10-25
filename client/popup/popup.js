@@ -7,35 +7,12 @@ const audioController = document.getElementById("my-audio");
 
 const URL = "http://localhost:3000/";
 
-let urlObj = {
-  url: "https://en.wikipedia.org/wiki/Nagothana",
-  title: "Nagothane-next-title",
-};
-
-// let bgPage = chrome.extension.getBackgroundPage();
-// let word = bgPage.word;
-// console.log(word)
-
-// chrome.runtime.sendMessage({ method: "getWord" }, function (response) {
-//   //here response will be the word you want
-//   console.log(response);
-// });
-
-function onGot(page) {
-  page.foo();
-}
-
-function onError(error) {
-  console.log(`Error: ${error}`);
-}
-
-let getting = chrome.runtime.getBackgroundPage();
-getting.then(onGot, onError);
+let urlObj = {};
 
 const change = "audio";
 audioController.setAttribute("src", `http://localhost:3000/${change}`);
 
-button.addEventListener("click", async () => {
+function getTabInfo() {
   chrome.tabs.query(
     {
       active: true,
@@ -44,10 +21,16 @@ button.addEventListener("click", async () => {
     function (tabs) {
       var tab = tabs[0];
       var url = tab.url;
-      console.log(url);
+      //   console.log(tab);
+      urlObj.title = tab.title;
+      urlObj.url = tab.url;
     }
   );
+}
 
+button.addEventListener("click", async () => {
+  getTabInfo();
+  console.log(urlObj);
   postData(URL, { urlObj }).then((data) => {
     console.log(data); // JSON data parsed by `data.json()` call
   });
