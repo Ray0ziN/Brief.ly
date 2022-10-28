@@ -9,8 +9,13 @@ const URL = "http://localhost:3000/";
 
 let urlObj = {};
 
-const change = "audio";
-audioController.setAttribute("src", `http://localhost:3000/${change}`);
+
+
+// const change = "P2xR6j9MiTh4I7ljPCA_J.mp3";
+// const change = "P2xR6j9MiTh4I7ljPCA_J";
+// const change = "E3AU4Lu7rQwRl2fwBGSZp"
+const change = "GINUCw_YxA5H0M258bxca"
+audioController.setAttribute("src", `http://localhost:3000/audio/${change}`);
 
 function getTabInfo() {
   chrome.tabs.query(
@@ -34,6 +39,8 @@ button.addEventListener("click", async () => {
   postData(URL, { urlObj }).then((data) => {
     console.log("data received"); 
     console.log(data); // JSON data parsed by `data.json()` call
+
+    //here I have to do reload the page with new audio
   });
 });
 
