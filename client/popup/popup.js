@@ -29,9 +29,10 @@ function getTabInfo() {
 }
 
 button.addEventListener("click", async () => {
-  getTabInfo();
+  await getTabInfo();
   console.log(urlObj);
   postData(URL, { urlObj }).then((data) => {
+    console.log("data received"); 
     console.log(data); // JSON data parsed by `data.json()` call
   });
 });

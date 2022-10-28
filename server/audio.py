@@ -1,3 +1,4 @@
+from nturl2path import url2pathname
 import sys
 import json
 import os
@@ -12,10 +13,12 @@ urlObj = json.loads(data)
 
 # The text that you want to convert to audio
 
-print(urlObj["url"]) # This will get you the url obj
-print(urlObj["title"])
+# print(urlObj["url"]) # This will get you the url obj
+print(urlObj["title"]) # This will give the title of the document
+# print(urlObj["id"])
 
-mytext = 'Hello man, I am Raunak and this is ' + urlObj["title"]
+id = urlObj["id"]
+myText = 'Hello man, I am Raunak and this is ' + urlObj["title"]
 
 # Language in which you want to convert
 language = 'en'
@@ -24,8 +27,8 @@ language = 'en'
 # here we have marked slow=False. Which tells
 # the module that the converted audio should
 # have a high speed
-myobj = gTTS(text=mytext, lang=language, slow=False)
+myObj = gTTS(text=myText, lang=language, slow=False)
 
 # Saving the converted audio in a mp3 file named
 # welcome
-myobj.save("audio/okay.mp3")
+myObj.save("audio/" + id +".mp3")
