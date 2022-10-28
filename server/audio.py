@@ -2,6 +2,7 @@ from nturl2path import url2pathname
 import sys
 import json
 import os
+from time import sleep
 from gtts import gTTS
 
 data = str(sys.argv[1])
@@ -18,7 +19,7 @@ print(urlObj["title"]) # This will give the title of the document
 # print(urlObj["id"])
 
 id = urlObj["id"]
-myText = 'Hello man, I am Raunak and this is ' + urlObj["title"]
+myText = 'Hello  ' + urlObj["title"]
 
 # Language in which you want to convert
 language = 'en'
@@ -28,7 +29,8 @@ language = 'en'
 # the module that the converted audio should
 # have a high speed
 myObj = gTTS(text=myText, lang=language, slow=False)
-
+# sleep(10)
 # Saving the converted audio in a mp3 file named
 # welcome
 myObj.save("audio/" + id +".mp3")
+print('Save done')
