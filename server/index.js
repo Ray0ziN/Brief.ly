@@ -25,22 +25,26 @@ app.post("/", async (req, res) => {
       JSON.stringify(urlObj),
     ]);
 
-    console.log(childPython)
-
-    var isAudioCreated;
-
+    // console.log(childPython)
+    
+    var isAudioCreated = false;
+    
     childPython.stdout.on("data", (data) => {
+      isAudioCreated = true
+      console.log(true)
       console.log(`stdout:${data}`);
     });
-
+    
     childPython.stderr.on("data", (data) => {
+      isAudioCreated = false
+      console.log(false)
       console.error(`stderror:${data}`);
     });
 
     //check weather audio is created
     console.log(isAudioCreated);
     if (!isAudioCreated) {
-      res.json({ error: "audio not produced" });
+      return res.json({ error: "audio not produced" });
     }
 
     res.json({ urlObj }); // return a unique id with nanoid
