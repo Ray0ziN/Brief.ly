@@ -11,9 +11,12 @@ let urlObj = {};
 // const change = "P2xR6j9MiTh4I7ljPCA_J";
 // const change = "E3AU4Lu7rQwRl2fwBGSZp"
 // const change = "P6fxh4eKWSgK-SyZLrsdG";
-chrome.storage.sync.get(['key'], function(result) {
-  console.log('Value currently is ' + result.key);
-  audioController.setAttribute("src", `http://localhost:3000/audio/${result.key}`);
+chrome.storage.sync.get(["key"], function (result) {
+  console.log("Value currently is " + result.key);
+  audioController.setAttribute(
+    "src",
+    `http://localhost:3000/audio/${result.key}`
+  );
 });
 
 function getTabInfo() {
@@ -23,31 +26,29 @@ function getTabInfo() {
       active: true,
       currentWindow: true,
     },
-    function (tabs) {
+    async function (tabs) {
       var tab = tabs[0];
       var url = tab.url;
-      //   console.log(tab);
-      urlObj.title = tab.title;
-      urlObj.url = tab.url;
+      console.log(tab.title, tab.url);
+      urlObj.title = await tab.title;
+      urlObj.url = await tab.url;
     }
   );
 }
+getTabInfo();
 
 button.addEventListener("click", async () => {
-  await getTabInfo();
   console.log(urlObj);
   postData(URL, { urlObj }).then((data) => {
     console.log("data received");
     console.log(data); // JSON data parsed by `data.json()` call
-    const uid = data.urlObj.id
-    const key = 'id'
-    
-    
-    chrome.storage.sync.set({key: uid}, function() {
-      console.log('Value is set to ' + value);
-      location.reload()
+    const uid = data.urlObj.id;
+    const key = "id";
+
+    chrome.storage.sync.set({ key: uid }, function () {
+      console.log("Value is set to " + value);
+      location.reload();
     });
-    
   });
 });
 
@@ -86,6 +87,6 @@ async function getData(url = "") {
   return response.json();
 }
 
-    // getData(`${URL}/audio/${uid}`).then((data) => {
-    //   console.log(data);
-    // });
+// getData(`${URL}/audio/${uid}`).then((data) => {
+//   console.log(data);
+// });
