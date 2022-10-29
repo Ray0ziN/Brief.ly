@@ -56,6 +56,8 @@ app.post("/", async (req, res) => {
 
 app.get("/audio/:id", function (req, res) {
   // yWV-_Z9vn4HDoYExZI-ZM
+
+  // Implement a cache system to check weather that article is already converted
   const { id } = req.params;
 
   // Ensure there is a range given for the video

@@ -28,8 +28,9 @@ language = 'en'
 # here we have marked slow=False. Which tells
 # the module that the converted audio should
 # have a high speed
+sleep(10)
 myObj = gTTS(text=myText, lang=language, slow=False)
-# sleep(10)
+sleep(2)
 # Saving the converted audio in a mp3 file named
 # welcome
 myObj.save("audio/" + id +".mp3")
