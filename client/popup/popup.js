@@ -44,7 +44,7 @@ button.addEventListener("click", async () => {
     // console.log("data received");
     console.log(data); // JSON data parsed by `data.json()` call
     const uid = data.urlObj.id;
-    const key = "id";
+    // const key = "id";
 
     chrome.storage.sync.set({ key:uid},(value,key) => {
       console.log("Value is set to " + value,key);
