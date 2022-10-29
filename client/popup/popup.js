@@ -11,7 +11,10 @@ let urlObj = {};
 // const change = "P2xR6j9MiTh4I7ljPCA_J";
 // const change = "E3AU4Lu7rQwRl2fwBGSZp"
 // const change = "P6fxh4eKWSgK-SyZLrsdG";
-// audioController.setAttribute("src", `http://localhost:3000/audio/${change}`);
+chrome.storage.sync.get(['key'], function(result) {
+  console.log('Value currently is ' + result.key);
+  audioController.setAttribute("src", `http://localhost:3000/audio/${result.key}`);
+});
 
 function getTabInfo() {
   console.log("get tab info is called");
@@ -37,19 +40,14 @@ button.addEventListener("click", async () => {
     console.log("data received");
     console.log(data); // JSON data parsed by `data.json()` call
     const uid = data.urlObj.id
-   
-    //here I have to do reload the page with new audio
-
-    // getData(`${URL}/audio/${uid}`).then((data) => {
-    //   console.log(data);
-    // });
-    // const change = "P2xR6j9MiTh4I7ljPCA_J";
-    console.log('this')
-    audioController.setAttribute(
-      "src",
-      `http://localhost:3000/audio/${uid}`
-    );
-    // location.reload()
+    const key = 'id'
+    
+    
+    chrome.storage.sync.set({key: uid}, function() {
+      console.log('Value is set to ' + value);
+      location.reload()
+    });
+    
   });
 });
 
@@ -87,3 +85,7 @@ async function getData(url = "") {
   });
   return response.json();
 }
+
+    // getData(`${URL}/audio/${uid}`).then((data) => {
+    //   console.log(data);
+    // });

@@ -44,7 +44,7 @@ app.post("/", async (req, res) => {
     //check weather audio is created
     console.log(isAudioCreated);
     if (!isAudioCreated) {
-      return res.json({ error: "audio not produced" });
+      // return res.json({ error: "audio not produced" });
     }
 
     res.json({ urlObj }); // return a unique id with nanoid
