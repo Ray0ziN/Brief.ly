@@ -1,0 +1,11 @@
+
+POST http://localhost:3000/ HTTP/1.1 
+content-type: application/json
+
+{
+    "urlObj":{
+        "title":"hi from rest",
+        "url":"new url"
+    }
+}
+
