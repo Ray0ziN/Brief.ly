@@ -2,13 +2,13 @@ from transformers import pipeline
 from bs4 import BeautifulSoup
 import requests
 
-# from nturl2path import url2pathname
-# import sys
-# import json
+from nturl2path import url2pathname
+import sys
+import json
 
 
-# data = str(sys.argv[1])
-# urlObj = json.loads(data)
+data = str(sys.argv[1])
+urlObj = json.loads(data)
 
 
 summarizer = pipeline("summarization")
@@ -84,5 +84,5 @@ language = 'en'
 
 # Saving the converted audio in a mp3 file named
 # to :id with same
-# myObj.save("audio/" + id +".mp3")
+myObj.save("audio/" + id +".mp3")
 print('Save done')
