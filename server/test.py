@@ -6,15 +6,15 @@ import sys
 import json
 
 
-data = str(sys.argv[1])
-urlObj = json.loads(data)
+# data = str(sys.argv[1])
+# urlObj = json.loads(data)
 
+# print(urlObj["url"])
 
-
-# summarizer = pipeline("summarization")
-print(type(urlObj["url"]))
 # URL = urlObj["url"]
-URL = "https://en.wikipedia.org/wiki/Nagothana"
+
+summarizer = pipeline("summarization")
+URL = "https://en.wikipedia.org/wiki/badlapur"
 
 r = requests.get(URL)
 
@@ -50,21 +50,19 @@ for chunk_id in range(len(chunks)):
 
 len(chunks)
 
-# res = summarizer(chunks, max_length=100, min_length=30, do_sample=False)
+res = summarizer(chunks, max_length=100, min_length=30, do_sample=False)
 
-# res[0]
+res[0]
 
-# ' '.join([summ['summary_text'] for summ in res])
+' '.join([summ['summary_text'] for summ in res])
 
-# text = ' '.join([summ['summary_text'] for summ in res])
+text = ' '.join([summ['summary_text'] for summ in res])
 
 
-# # :id as an arg would concatenate
+with open('text/id.txt', 'w') as f:
+    f.write(text)
 
-# with open('text/id.txt', 'w') as f:
-#     f.write(text)
-
-# print(text)
+print(text)
 
 
 # from gtts import gTTS

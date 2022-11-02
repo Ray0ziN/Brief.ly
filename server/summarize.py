@@ -6,14 +6,15 @@ import sys
 import json
 
 
-# data = str(sys.argv[1])
-# urlObj = json.loads(data)
-# id = urlObj["id"]
-id = 'veoi3n239gvnioj93fnv'
+data = str(sys.argv[1])
+urlObj = json.loads(data)
+
 
 summarizer = pipeline("summarization")
-# URL = urlObj["url"]
-URL = 'https://en.wikipedia.org/wiki/Badlapur'
+id = urlObj["id"]
+URL = urlObj["url"]
+# URL = "https://en.wikipedia.org/wiki/Badlapur"
+# https://en.wikipedia.org/wiki/Nagothana
 
 r = requests.get(URL)
 
@@ -55,23 +56,19 @@ res[0]
 
 text = ' '.join([summ['summary_text'] for summ in res])
 
-
-# :id as an arg would concatenate
-
-with open('text/'+id+'.txt', 'w') as f:
+with open('text/'+ id +'.txt', 'w') as f:
     f.write(text)
 
 print(text)
-
-
 
 from gtts import gTTS
 
 # This module is imported so that we can
 # play the converted audio
+import os
 
 # The text that you want to convert to audio
-#mText = 'Hello I am Raunak and we are making Brief it!'
+#mytext = 'Hello I am Raunak and we are making Brief it!'
 
 # Language in which you want to convert
 language = 'en'
@@ -80,10 +77,9 @@ language = 'en'
 # here we have marked slow=False. Which tells
 # the module that the converted audio should
 # have a high speed
-
-myObj = gTTS(text=text, lang=language, slow=False)
+myobj = gTTS(text=text, lang=language, slow=False)
 
 # Saving the converted audio in a mp3 file named
-# to :id with same
-myObj.save("audio/" + id +".mp3")
-print('Save done')
+# welcome
+myobj.save("audio/" + id +".mp3")
+print('done')

@@ -16,7 +16,7 @@ const uploadAudio = async (req, res) => {
 
   try {
     const childPython = await spawn("python", [
-      "./audio.py",
+      "./summarize.py",
       JSON.stringify(urlObj),
     ]);
 
