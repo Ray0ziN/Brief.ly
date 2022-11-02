@@ -1,7 +1,6 @@
-from nturl2path import url2pathname
 import sys
 import json
-import os
+
 from time import sleep
 from gtts import gTTS
 
@@ -20,6 +19,11 @@ print(urlObj["title"]) # This will give the title of the document
 
 id = urlObj["id"]
 myText = 'Hello  ' + urlObj["title"]
+
+sleep(5)
+
+with open('text/'+ id +'.txt', 'w') as f:
+    f.write(myText)
 
 # Language in which you want to convert
 language = 'en'

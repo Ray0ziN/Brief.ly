@@ -2,10 +2,14 @@ const { spawn } = require("child_process");
 const { nanoid } = require("nanoid");
 const fs = require("fs");
 
+var Data = [];
+
 const uploadAudio = async (req, res) => {
   const {
     urlObj: { url, title },
   } = req.body;
+
+  //Cache mechanism
 
   const id = nanoid();
   const urlObj = {
@@ -16,7 +20,7 @@ const uploadAudio = async (req, res) => {
 
   try {
     const childPython = await spawn("python", [
-      "./summarize.py",
+      "./audio.py",
       JSON.stringify(urlObj),
     ]);
 
@@ -47,8 +51,75 @@ const uploadAudio = async (req, res) => {
   }
 };
 
-const getAudioById = function (req, res) {
+const uploadAudioCache = async (req, res) => {
+  const {
+    urlObj: { url, title },
+  } = req.body;
 
+  //Cache mechanism
+
+  var isCached = false;
+
+  //check weather it's cached
+  Data.forEach((obj) => {
+    if (obj.key === url) {
+      console.log("isCached");
+      isCached = true;
+      const urlObj = {
+        url,
+        title,
+        id: obj.value,
+      };
+      return res.json({ urlObj });
+    }
+  });
+
+  if (!isCached) {
+    console.log("not cached");
+    const id = nanoid();
+
+    // cache function
+    const toCacheData = {
+      key: url,
+      value: id,
+    };
+    Data.push(toCacheData);
+
+    //return with new id
+    //res.json({urlObj})
+
+    const urlObj = {
+      url,
+      title,
+      id,
+    };
+    // console.log(Data);
+
+    try {
+      const childPython = await spawn("python", [
+        "./summarize.py",
+        JSON.stringify(urlObj),
+      ]);
+      childPython.stdout.on("data", (data) => {
+        isAudioCreated = true;
+        console.log(true);
+        console.log(`stdout:${data}`);
+      });
+      childPython.stderr.on("data", (data) => {
+        isAudioCreated = false;
+        console.log(false);
+        console.error(`stderror:${data}`);
+      });
+      res.json({ urlObj }); // return a unique id with nanoid
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //generate new
+  //generate new audio summarize.py || audio.py
+};
+
+const getAudioById = function (req, res) {
   // Implement a cache system to check weather that article is already converted
   const { id } = req.params;
 
@@ -95,4 +166,5 @@ const getAudioById = function (req, res) {
 module.exports = {
   uploadAudio,
   getAudioById,
+  uploadAudioCache,
 };
