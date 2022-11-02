@@ -7,12 +7,6 @@ const URL = "http://localhost:3000";
 
 let urlObj = {};
 
-// const change = "P2xR6j9MiTh4I7ljPCA_J.mp3";
-// const change = "P2xR6j9MiTh4I7ljPCA_J";
-// const change = "E3AU4Lu7rQwRl2fwBGSZp"
-// const change = "P6fxh4eKWSgK-SyZLrsdG";
-
-
 chrome.storage.sync.get(["key"], function (result) {
   console.log("Value currently is " + result.key);
   audioController.setAttribute(

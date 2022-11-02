@@ -22,13 +22,14 @@
   --heading6: 16px;
   --para:24px;
 
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: monospace;
   /* font-family: 'Roboto', sans-serif; */
-
+  
   /*Colors*/
   --lightTint:rgba(223,246,253,.7);
   --tint: rgb(221, 246, 253);
-  --hue: #47b5ff;
+  --hue: #02BEF7;
   --tone: #1363df;
   --shade: #06283d;
   --blue:#3cceff;
@@ -65,8 +66,9 @@
       --heading5: 15px;
       --heading6: 14px;
       --para: 12px;
-      font-family: 'Poppins', sans-serif;
+      /* font-family: 'Poppins', sans-serif; */
+      /* font-family:'Times New Roman', Times, serif; */
     
     }
-}
+  }
 
