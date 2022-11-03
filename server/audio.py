@@ -20,7 +20,7 @@ print(urlObj["title"]) # This will give the title of the document
 id = urlObj["id"]
 myText = 'Hello  ' + urlObj["title"]
 
-sleep(5)
+# sleep(5)
 
 with open('text/'+ id +'.txt', 'w') as f:
     f.write(myText)

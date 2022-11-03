@@ -3,7 +3,8 @@ const app = express();
 
 //Middleware parse data
 app.use(express.json());
-
+const path = require('path')
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 const audioRouter = require('./router')
 app.use("/",audioRouter)
