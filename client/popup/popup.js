@@ -3,7 +3,7 @@ console.log("popupjs");
 const button = document.getElementById("sendlink");
 const audioController = document.getElementById("my-audio");
 
-const URL = "http://localhost:3000";
+const URL = "http://localhost:3000/test";
 
 let urlObj = {};
 
