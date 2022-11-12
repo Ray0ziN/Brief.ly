@@ -1,2 +1,4 @@
 # briefly
-This is chrome extension which will give audio output for web pages
+
+This is extension which will give audio output for web pages using ML for summarizing 
+
