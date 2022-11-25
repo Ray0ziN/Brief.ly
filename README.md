@@ -1,5 +1,4 @@
-# briefly
-Summarization of Web Articles and Audio Output Generation
+# briefly - Summarization of Web Articles and Audio Output Generation
 
 ![briefly logo](./assets/images/Logo.png)
 
@@ -13,16 +12,27 @@ Brief.ly is a Web Application that aims to retrieve a certain article, news or a
 - pytorch v1.13.0 
 
 # Setup
-```
-#0d1117
 
-```
+[extension](./extension/README.MD)
+
+[server](./server/README.md)
 
 # Working
-
 ![Working briefly](./assets/images/workflow.png)
 
+- We would First group textual data together from the article. This is called Web-content mining or web-scraping.
+- Individually words are separated and tokenized. 
+- Each word’s frequency is calculated. The frequency of the word which is highest is chosen and every word frequency is divided with that frequency. 
+- The values generated are between 0 and 1. 
+- The values closer to 1 are selected and sentences which contain them are prioritized. 
+- The sentences with most priority are selected and a summary is successfully extracted
 
 # Result 
-![Extension](./assets/images/brief.ly%20extension.png)
-![webpage](./assets/images/brief.ly%20.png)
+
+![Extension](./assets/images/brieflyExtension.png)
+
+Extension UI
+
+![webpage](./assets/images/briefly.png)
+
+Extension on webpages
